@@ -39,9 +39,9 @@ public abstract class Operation {
 	private static HashMap<String, Class> ops = new HashMap<String, Class>();
 
 	private static void prepare() {
-		ops.put("+", AdditionOperation.class);
-		ops.put("-", SubtractionOperator.class);
 		ops.put("*", MultiplicationOperation.class);
+		ops.put("-", SubtractionOperator.class);
+		ops.put("+", AdditionOperation.class);
 		ops.put("/", DivisionOperation.class);
 	}
 
@@ -65,7 +65,7 @@ public abstract class Operation {
 			return null;
 
 	}
-	
+	//enables the automatic creation of buttons
 	public static Set<String> getOps(){
 		prepare();
 		return ops.keySet();

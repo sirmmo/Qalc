@@ -5,6 +5,10 @@
 	<div class="history_line"><span class="sign">{{sign}}</span><span class="value">{{value}}</span></div>
 </script>
 
+<script id="symbol_line" type="text/html">
+	<a href="#" class="center run font">{{symbol}}</a>
+</script>
+
 <header class="center">
 	<div id="title" class="font">Qalc</div>
 </header>
@@ -17,10 +21,6 @@
 		<div id="container">
 			<input type="text" placeholder="Put some value here" id="expression"></input>
 			<div id="buttons">
-				<a href="#" class="center run font">+</a>
-				<a href="#" class="center run font">-</a>
-				<a href="#" class="center run font">*</a>
-				<a href="#" class="center run font">/</a>
 				<a href="#" class="center clear font">C</a>
 			</div>
 		</div>
@@ -73,11 +73,16 @@ $(function(){
 	$.getJSON('@{status()}', function(data){
 		$('#result #content').text(data);
 	});
-	//graphical stuff
-	$('#buttons').buttonset();
-	$('#history').jScrollPane({
-		autoReinitialize:true
+	
+	//prepare symbols
+	$.getJSON('@{getops()}', function(data){
+		for(var i in data){
+			$('#buttons').append(ich.symbol_line({symbol:data[i]}));
+		}
+		//graphical stuff
+		$('#buttons').buttonset();
 	});
+	
 });
 
 </script>

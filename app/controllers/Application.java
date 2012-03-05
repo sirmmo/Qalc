@@ -7,6 +7,7 @@ import play.mvc.Http.StatusCode;
 import java.util.*;
 
 import calc.Expression;
+import calc.operations.Operation;
 
 import models.*;
 
@@ -53,8 +54,9 @@ public class Application extends Controller {
 		session.put("value", 0);
 	}
 	
+	//gets the operator list
 	public static void getOps(){
-		
+		renderJSON(Operation.getOps());
 	}
 
 }
